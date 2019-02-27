@@ -17,6 +17,10 @@ export default class Document extends PureComponent {
     });
   }
 
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   updateMarkdown = ({ target }) => {
     store.dispatch(updateMarkdown(target.value));
   };
@@ -26,7 +30,7 @@ export default class Document extends PureComponent {
     return (
       <>
         <div className={styles.Document}>
-          <Editor updateMarkdown={this.updateMarkdown} />
+          <Editor markdown={markdown} updateMarkdown={this.updateMarkdown} />
           <Preview markdown={markdown} />
         </div>
       </>
