@@ -3,15 +3,21 @@ import store from '../../store';
 import Preview from './Preview';
 import Editor from './Editor';
 import styles from './Document.css';
-import { updateMarkdown } from '../../selectors/document';
+import { updateMarkdown } from '../../actions/document';
+import { getMarkdown } from '../../selectors/document';
 
 export default class Document extends PureComponent {
   state = {
     markdown: '# Hi there'
   };
 
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() => {
+      this.setState({ markdown: getMarkdown(store.getState()) });
+    });
+  }
+
   updateMarkdown = ({ target }) => {
-    // this.setState({ markdown: target.value });
     store.dispatch(updateMarkdown(target.value));
   };
 

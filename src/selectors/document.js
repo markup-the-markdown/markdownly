@@ -1,2 +1,2 @@
-export const updateMarkdown = state => state.markdown;
+export const getMarkdown = state => state.markdown;
 
