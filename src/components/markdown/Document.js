@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import store from '../../store';
-import Preview from '../containers/Preview';
-import Editor from '../containers/Editor';
+import Preview from '../../containers/Preview';
+import Editor from '../../containers/Editor';
 import styles from './Document.css';
 import { updateMarkdown } from '../../actions/document';
 import { getMarkdown } from '../../selectors/document';
