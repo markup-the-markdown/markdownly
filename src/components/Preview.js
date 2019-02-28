@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import marked from 'marked';
 import styles from 'github-markdown-css/github-markdown.css';
+import PropTypes from 'prop-types';
 
 function Preview({ markdown }) {
   const __html = marked(markdown);
