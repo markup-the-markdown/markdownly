@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import File from '../../components/File';
 import store from '../../store';
 import { getFiles } from '../../selectors/document';
 import { updateSelectedFile } from '../../actions/document';
+import FilesDisplay from '../../components/FilesDisplay';
 
 export default class Files extends PureComponent {
   state = {
@@ -14,7 +14,6 @@ export default class Files extends PureComponent {
     this.setState({ files: getFiles(store.getState()) });
     this.unsubscribe = store.subscribe(() => {
       this.setState({ files: getFiles(store.getState()) });
-      console.log('state from store', store.getState());
     });
   }
 
@@ -29,17 +28,9 @@ export default class Files extends PureComponent {
   render() {
     const { files } = this.state;
 
-    const filesList = files.map(file => {
-      return <li key={file.id}>
-        <File file={file}/>
-        <button id={file.id} onClick={this.updateSelectedFile}>Edit</button>
-      </li>;
-    });
-
-    return (
-      <ul>
-        {filesList}
-      </ul>
-    );
+    return <FilesDisplay
+      files={files}
+      handleClick={this.updateSelectedFile}
+    />;
   }
 }

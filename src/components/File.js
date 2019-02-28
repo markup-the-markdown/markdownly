@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function File({ file }) {
-  return <p>{file.title}</p>;
+function File({ title }) {
+  return <p>{title}</p>;
 }
 
 File.propTypes = {
-  file: PropTypes.object.isRequired
+  title: PropTypes.string.isRequired
 };
 
 export default File;
