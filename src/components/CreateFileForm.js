@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function CreateFileForm({ handleSubmit, title }) {
+function CreateFileForm({ handleSubmit, title, handleChange }) {
   return (
     <form onSubmit={handleSubmit}>
-      <p>Title: </p>
-      <input type="text" name="title" value={title} />
+      <label> 
+        Title: 
+        <input type="text" name="title" value={title} onChange={handleChange} />
+      </label>
       <button type="submit">Create File</button>
     </form>
   );
@@ -13,7 +15,8 @@ function CreateFileForm({ handleSubmit, title }) {
 
 CreateFileForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired
 };
 
 export default CreateFileForm;
