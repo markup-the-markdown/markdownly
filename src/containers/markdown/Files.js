@@ -2,21 +2,19 @@ import React, { PureComponent } from 'react';
 import File from '../../components/File';
 import store from '../../store';
 import { getFiles } from '../../selectors/document';
-import PropTypes from 'prop-types';
+import { updateSelectedFile } from '../../actions/document';
 
 export default class Files extends PureComponent {
   state = {
     files: [],
-    selectedFile: ''
+    selectedFile: 0
   };
 
-  static propTypes = {
-    handleEdit: PropTypes.func.isRequired
-  }
-
   componentDidMount() {
+    this.setState({ files: getFiles(store.getState()) });
     this.unsubscribe = store.subscribe(() => {
       this.setState({ files: getFiles(store.getState()) });
+      console.log('state from store', store.getState());
     });
   }
 
@@ -25,16 +23,16 @@ export default class Files extends PureComponent {
   }
 
   updateSelectedFile = ({ target }) => {
-    store.dispatch(update)
-  }
+    store.dispatch(updateSelectedFile(target.id));
+  };
 
   render() {
     const { files } = this.state;
 
     const filesList = files.map(file => {
       return <li key={file.id}>
-        <File title={file.title}/>
-        <button id={file.id} onClick={this.updateSelectedFile}></button>
+        <File file={file}/>
+        <button id={file.id} onClick={this.updateSelectedFile}>Edit</button>
       </li>;
     });
 
