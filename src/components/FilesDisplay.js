@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import File from './File';
 
-function FilesDisplay({ files, handleClick }) {
+function FilesDisplay({ files }) {
   const filesList = files.map(file => {
     return <li key={file.id}>
       <File title={file.title}/>
-      <button id={file.id} onClick={handleClick}>Edit</button>
     </li>;
   });
 
@@ -18,8 +17,7 @@ function FilesDisplay({ files, handleClick }) {
 }
 
 FilesDisplay.propTypes = {
-  files: PropTypes.array.isRequired,
-  handleClick: PropTypes.func.isRequired
+  files: PropTypes.array.isRequired
 };
 
 export default FilesDisplay;

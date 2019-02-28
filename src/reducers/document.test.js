@@ -34,39 +34,6 @@ describe('document reducer', () => {
       markdown: '# You good?'
     });
   });
-
-  it('handles the update file', () => {
-    const updatedState = reducer(state, {
-      type: 'UPDATE_FILES',
-      payload: {
-        id: 5,
-        title: 'z'
-      }
-    });
-
-    expect(updatedState).toEqual({
-      ...state,
-      files: [
-        ...state.files,
-        {
-          id: 5,
-          title: 'z'
-        }
-      ]
-    });
-  });
-
-  it('handles the update selected file', () => {
-    const updatedState = reducer(state, {
-      type: 'UPDATE_SELECTED_FILE',
-      payload: 2
-    });
-
-    expect(updatedState).toEqual({
-      ...state,
-      selectedFile: 2
-    });
-  });
 });
 
 

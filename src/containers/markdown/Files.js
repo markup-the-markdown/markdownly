@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import store from '../../store';
 import { getFiles } from '../../selectors/document';
-import { updateSelectedFile } from '../../actions/document';
 import FilesDisplay from '../../components/FilesDisplay';
 
 export default class Files extends PureComponent {
@@ -21,16 +20,11 @@ export default class Files extends PureComponent {
 
   updateFiles = () =>  this.setState({ files: getFiles(store.getState()) });
 
-  updateSelectedFile = ({ target }) => {
-    store.dispatch(updateSelectedFile(target.id));
-  };
-
   render() {
     const { files } = this.state;
 
     return <FilesDisplay
       files={files}
-      handleClick={this.updateSelectedFile}
     />;
   }
 }
