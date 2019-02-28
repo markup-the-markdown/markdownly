@@ -3,13 +3,31 @@ import {
 } from '../actions/document';
 
 const initialState = {
-  markdown: '# Hi there'
+  markdown: '# Hi there',
+  selectedFile: 0,
+  files: [
+    {
+      id: 0,
+      title: 'a'
+    },
+    {
+      id: 1,
+      title: 'b'
+    },
+    {
+      id: 2,
+      title: 'c'
+    }
+  ]
 };
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case UPDATE_MARKDOWN:
-      return { ...action.payload };
+      return {
+        ...state,
+        markdown: action.payload
+      };
     default:
       return state;  
   }
