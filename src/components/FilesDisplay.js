@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import File from './File';
 
-function FilesDisplay({ files }) {
-  const filesList = files.map(file => {
-    return <li key={file.id}>
-      <File title={file.title}/>
+function FilesDisplay({ titles }) {
+  const filesList = titles.map((title, ind) => {
+    return <li key={ind}>
+      <File title={title}/>
     </li>;
   });
 
@@ -17,7 +17,7 @@ function FilesDisplay({ files }) {
 }
 
 FilesDisplay.propTypes = {
-  files: PropTypes.array.isRequired
+  titles: PropTypes.array.isRequired
 };
 
 export default FilesDisplay;

@@ -1,6 +1,7 @@
 import { 
   getMarkdown,
-  getFiles
+  getFiles,
+  getTitles
 } from './document';
 
 describe('selector test', () => {
@@ -42,6 +43,15 @@ describe('selector test', () => {
         id: 2,
         title: 'c'
       }
+    ]);
+  });
+
+  it('returns list of titles', () => {
+    const titles = getTitles(state);
+    expect(titles).toEqual([
+      'a',
+      'b',
+      'c'
     ]);
   });
 });

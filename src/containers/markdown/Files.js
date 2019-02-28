@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react';
 import store from '../../store';
-import { getFiles } from '../../selectors/document';
+import { getTitles } from '../../selectors/document';
 import FilesDisplay from '../../components/FilesDisplay';
 
 export default class Files extends PureComponent {
   state = {
-    files: [],
+    titles: [],
     selectedFile: 0
   };
 
@@ -18,13 +18,13 @@ export default class Files extends PureComponent {
     this.unsubscribe();
   }
 
-  updateFiles = () =>  this.setState({ files: getFiles(store.getState()) });
+  updateFiles = () =>  this.setState({ titles: getTitles(store.getState()) });
 
   render() {
-    const { files } = this.state;
+    const { titles } = this.state;
 
     return <FilesDisplay
-      files={files}
+      titles={titles}
     />;
   }
 }
