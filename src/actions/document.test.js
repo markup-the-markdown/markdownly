@@ -1,6 +1,7 @@
 import { 
   updateMarkdown,
-  updateFiles
+  updateFiles,
+  updateSelectedFile
 } from './document';
 
 describe('action test', () => {
@@ -21,6 +22,14 @@ describe('action test', () => {
     expect(updated).toEqual({
       type: 'UPDATE_FILES',
       payload: file
+    });
+  });
+
+  it('returns action for UPDATE_SELECTED_FILE', () => {
+    const updated = updateSelectedFile(2);
+    expect(updated).toEqual({
+      type: 'UPDATE_SELECTED_FILE',
+      payload: 2
     });
   });
 }); 
