@@ -1,5 +1,6 @@
 import { 
-  updateMarkdown
+  updateMarkdown,
+  updateFiles
 } from './document';
 
 describe('action test', () => {
@@ -8,6 +9,18 @@ describe('action test', () => {
     expect(updated).toEqual({
       type: 'UPDATE_MARKDOWN',
       payload: '# How are you'
+    });
+  });
+
+  it('returns action for UPDATE_FILES', () => {
+    const file = {
+      id: 5,
+      title: 'z'
+    };
+    const updated = updateFiles(file);
+    expect(updated).toEqual({
+      type: 'UPDATE_FILES',
+      payload: file
     });
   });
 }); 

@@ -34,6 +34,27 @@ describe('document reducer', () => {
       markdown: '# You good?'
     });
   });
+
+  it('handles the update file', () => {
+    const updatedState = reducer(state, {
+      type: 'UPDATE_FILES',
+      payload: {
+        id: 5,
+        title: 'z'
+      }
+    });
+
+    expect(updatedState).toEqual({
+      ...state,
+      files: [
+        ...state.files,
+        {
+          id: 5,
+          title: 'z'
+        }
+      ]
+    });
+  });
 });
 
 

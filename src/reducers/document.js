@@ -1,5 +1,6 @@
 import {
-  UPDATE_MARKDOWN
+  UPDATE_MARKDOWN,
+  UPDATE_FILES
 } from '../actions/document';
 
 const initialState = {
@@ -28,6 +29,14 @@ export default function reducer(state = initialState, action) {
         ...state,
         markdown: action.payload
       };
+    case UPDATE_FILES:
+      return { 
+        ...state,
+        files: [
+          ...state.files,
+          action.payload
+        ]
+      };  
     default:
       return state;  
   }
