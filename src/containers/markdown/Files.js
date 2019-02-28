@@ -11,15 +11,15 @@ export default class Files extends PureComponent {
   };
 
   componentDidMount() {
-    this.setState({ files: getFiles(store.getState()) });
-    this.unsubscribe = store.subscribe(() => {
-      this.setState({ files: getFiles(store.getState()) });
-    });
+    this.updateFiles();
+    this.unsubscribe = store.subscribe(this.updateFiles);
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
+
+  updateFiles = () =>  this.setState({ files: getFiles(store.getState()) });
 
   updateSelectedFile = ({ target }) => {
     store.dispatch(updateSelectedFile(target.id));
