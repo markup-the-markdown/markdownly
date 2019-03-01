@@ -1,30 +1,11 @@
-import React, { PureComponent } from 'react';
-import store from '../../store';
+import { connect } from 'react-redux';
 import { getTitles } from '../../selectors/document';
 import FilesDisplay from '../../components/FilesDisplay';
 
-export default class Files extends PureComponent {
-  state = {
-    titles: [],
-    selectedFile: 0
-  };
+const mapStateToProps = state => ({
+  titles: getTitles(state)
+});
 
-  componentDidMount() {
-    this.updateFiles();
-    this.unsubscribe = store.subscribe(this.updateFiles);
-  }
+const FilesContainer = connect(mapStateToProps)(FilesDisplay);
 
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  updateFiles = () =>  this.setState({ titles: getTitles(store.getState()) });
-
-  render() {
-    const { titles } = this.state;
-
-    return <FilesDisplay
-      titles={titles}
-    />;
-  }
-}
+export default FilesContainer;
