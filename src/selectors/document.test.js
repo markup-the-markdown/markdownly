@@ -1,11 +1,13 @@
 import { 
   getMarkdown,
   getFiles,
-  getTitles
+  getTitles,
+  getTitle
 } from './document';
 
 describe('selector test', () => {
   const state = {
+    title: 'File 1',
     markdown: '# How are you',
     selectedFile: 0,
     files: [
@@ -53,5 +55,10 @@ describe('selector test', () => {
       'b',
       'c'
     ]);
+  });
+
+  it('returns title', () => {
+    const title = getTitle(state);
+    expect(title).toEqual('File 1');
   });
 });
