@@ -2,7 +2,8 @@ import {
   updateMarkdown,
   updateFiles,
   updateTitle,
-  deleteFile
+  deleteFile,
+  updateFileTitle
 } from './document';
 
 describe('action test', () => {
@@ -39,6 +40,17 @@ describe('action test', () => {
     expect(deleted).toEqual({
       type: 'DELETE_FILE',
       payload: 0
+    });
+  });
+
+  it('returns action for UPDATE_FILE_TITLE', () => {
+    const updatedFile = updateFileTitle(0, 'new filename');
+    expect(updatedFile).toEqual({
+      type: 'UPDATE_FILE_TITLE',
+      payload: {
+        ind: 0,
+        title: 'new filename'
+      }
     });
   });
 }); 
