@@ -6,6 +6,15 @@ const mapStateToProps = state => ({
   titles: getTitles(state)
 });
 
-const FilesContainer = connect(mapStateToProps)(FilesDisplay);
+const mapDispatchToProps = dispatch => ({
+  handleDelete({ target }) {
+    console.log('delete', target.id);
+  }
+});
+
+const FilesContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilesDisplay);
 
 export default FilesContainer;
