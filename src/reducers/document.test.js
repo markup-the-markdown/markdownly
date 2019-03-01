@@ -8,15 +8,12 @@ describe('document reducer', () => {
       selectedFile: 0,
       files: [
         {
-          id: 0,
           title: 'a'
         },
         {
-          id: 1,
           title: 'b'
         },
         {
-          id: 2,
           title: 'c'
         }
       ]
@@ -39,7 +36,6 @@ describe('document reducer', () => {
     const updatedState = reducer(state, {
       type: 'UPDATE_FILES',
       payload: {
-        id: 5,
         title: 'z'
       }
     });
@@ -49,7 +45,6 @@ describe('document reducer', () => {
       files: [
         ...state.files,
         {
-          id: 5,
           title: 'z'
         }
       ]
@@ -65,6 +60,25 @@ describe('document reducer', () => {
     expect(updateTitle).toEqual({
       ...state,
       title: 'Phile 1'
+    });
+  });
+
+  it('deletes file', () => {
+    const updatedFile = reducer(state, {
+      type: 'DELETE_FILE',
+      payload: 0
+    });
+
+    expect(updatedFile).toEqual({
+      ...state,
+      files: [
+        {
+          title: 'b'
+        },
+        {
+          title: 'c'
+        }
+      ]
     });
   });
 });
