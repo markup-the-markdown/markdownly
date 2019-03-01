@@ -1,23 +1,14 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react';
+import store from '../../store';
 import { getTitles } from '../../selectors/document';
 import FilesDisplay from '../../components/FilesDisplay';
 
-function Files({ titles }) {
-  return (
-    <FilesDisplay
-      titles={titles}
-    />
-  );
-}
-  
-const mapStateToProps = (state) => ({
-  titles: getTitles(state)
-});
+export default class Files extends PureComponent {
+  state = {
+    titles: [],
+    selectedFile: 0
+  };
 
-const mapDispatchToProps = dispatch => ({
-  
-})
   componentDidMount() {
     this.updateFiles();
     this.unsubscribe = store.subscribe(this.updateFiles);
@@ -32,6 +23,8 @@ const mapDispatchToProps = dispatch => ({
   render() {
     const { titles } = this.state;
 
-    return 
+    return <FilesDisplay
+      titles={titles}
+    />;
   }
 }
