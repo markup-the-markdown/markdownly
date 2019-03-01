@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { getTitles } from '../../selectors/document';
+import { deleteFile } from '../../actions/document';
 import FilesDisplay from '../../components/FilesDisplay';
 
 const mapStateToProps = state => ({
@@ -8,7 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleDelete({ target }) {
-    console.log('delete', target.id);
+    dispatch(deleteFile(target.id));
   }
 });
 

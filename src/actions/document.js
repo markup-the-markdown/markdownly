@@ -17,4 +17,7 @@ export const updateTitle = title => ({
 });
 
 export const DELETE_FILE = 'DELETE_FILE';
-es
+export const deleteFile = ind => ({
+  type: DELETE_FILE,
+  payload: ind
+});
