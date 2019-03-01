@@ -4,6 +4,7 @@ import {
 } from '../actions/document';
 
 const initialState = {
+  title: '',
   markdown: '# Hi there',
   selectedFile: 0,
   files: [
@@ -36,7 +37,12 @@ export default function reducer(state = initialState, action) {
           ...state.files,
           action.payload
         ]
-      };  
+      };
+    case UPDATE_TITLE:
+      return {
+        ...state,
+        title: action.payload
+      };
     default:
       return state;  
   }
