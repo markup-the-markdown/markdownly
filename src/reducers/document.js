@@ -1,7 +1,8 @@
 import {
   UPDATE_MARKDOWN,
   UPDATE_FILES,
-  UPDATE_TITLE
+  UPDATE_TITLE,
+  DELETE_FILE
 } from '../actions/document';
 
 const initialState = {
@@ -10,15 +11,12 @@ const initialState = {
   selectedFile: 0,
   files: [
     {
-      id: 0,
       title: 'a'
     },
     {
-      id: 1,
       title: 'b'
     },
     {
-      id: 2,
       title: 'c'
     }
   ]
@@ -43,6 +41,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         title: action.payload
+      };
+    case DELETE_FILE:
+      // eslint-disable-next-line no-case-declarations
+      const copy = state.files.slice();
+      copy.splice(action.payload, 1);
+      return {
+        ...state,
+        files: copy
       };
     default:
       return state;  
