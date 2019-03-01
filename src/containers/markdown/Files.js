@@ -10,6 +10,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   handleDelete({ target }) {
     dispatch(deleteFile(target.id));
+  },
+  handleEdit() {
+    console.log('edit');
   }
 });
 
