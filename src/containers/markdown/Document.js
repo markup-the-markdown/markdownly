@@ -1,5 +1,5 @@
-import React from 'react';
 import { connect } from 'react-redux';
+import React from 'react';
 import Preview from '../../components/Preview';
 import Editor from '../../components/Editor';
 import PropTypes from 'prop-types';
@@ -16,7 +16,12 @@ function Document({ markdown, updateMarkdown }) {
       </div>
       </>
   );
-} 
+}
+
+Document.propTypes = {
+  markdown: PropTypes.string.isRequired,
+  updateMarkdown: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
   markdown: getMarkdown(state)
@@ -24,15 +29,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   updateMarkdown({ target }) {
-    event.preventDefault();
     dispatch(updateMarkdown(target.value));
   }
 });
-
-Document.propTypes = {
-  markdown: PropTypes.string.isRequired,
-  updateMarkdown: PropTypes.func.isRequired
-};
 
 export default connect(
   mapStateToProps,
