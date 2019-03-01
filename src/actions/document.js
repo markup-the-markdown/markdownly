@@ -15,3 +15,6 @@ export const updateTitle = title => ({
   type: UPDATE_TITLE,
   payload: title
 });
+
+export const DELETE_FILE = 'DELETE_FILE';
+es
