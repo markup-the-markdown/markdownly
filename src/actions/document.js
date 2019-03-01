@@ -21,3 +21,12 @@ export const deleteFile = ind => ({
   type: DELETE_FILE,
   payload: ind
 });
+
+export const UPDATE_FILE_TITLE = 'UPDATE_FILE_TITLE';
+export const updateFileTitle = (ind, title) => ({
+  type: UPDATE_FILE_TITLE,
+  payload: {
+    ind, 
+    title
+  }
+}); 
