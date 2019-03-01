@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { updateFiles } from '../actions/document';
+import { updateFiles, updateTitle } from '../actions/document';
+import { getTitle } from '../selectors/document';
 import store from '../store';
 import CreateFileForm from '../components/CreateFileForm';
 
@@ -8,11 +9,19 @@ export default class CreateFile extends PureComponent {
     title: ''
   };
 
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(this.updateTitle);
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   handleChange = ({ target }) => {
-    this.setState({
-      [target.name]: target.value
-    });
+    store.dispatch(updateTitle(target.value));
   };
+
+  updateTitle = () => this.setState({ title: getTitle(store.getState()) });
 
   handleSubmit = event => {
     event.preventDefault();
