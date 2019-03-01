@@ -1,39 +1,40 @@
-import React, { PureComponent } from 'react';
-import store from '../../store';
+import React from 'react';
+import { connect } from 'react-redux';
 import Preview from '../../components/Preview';
 import Editor from '../../components/Editor';
+import PropTypes from 'prop-types';
 import styles from './Document.css';
 import { updateMarkdown } from '../../actions/document';
 import { getMarkdown } from '../../selectors/document';
 
-export default class Document extends PureComponent {
-  state = {
-    markdown: '# Hi there'
-  };
-
-  componentDidMount() {
-    this.unsubscribe = store.subscribe(() => {
-      this.setState({ markdown: getMarkdown(store.getState()) });
-    });
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  updateMarkdown = ({ target }) => {
-    store.dispatch(updateMarkdown(target.value));
-  };
-
-  render() {
-    const { markdown } = this.state;
-    return (
-      <>
-        <div className={styles.Document}>
-          <Editor markdown={markdown} updateMarkdown={this.updateMarkdown} />
-          <Preview markdown={markdown} />
-        </div>
+function Document({ markdown, updateMarkdown }) {
+  return (
+    <>
+      <div className={styles.Document}>
+        <Editor markdown={markdown} updateMarkdown={updateMarkdown} />
+        <Preview markdown={markdown} />
+      </div>
       </>
-    );
+  );
+} 
+
+const mapStateToProps = (state) => ({
+  markdown: getMarkdown(state)
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateMarkdown({ target }) {
+    event.preventDefault();
+    dispatch(updateMarkdown(target.value));
   }
-}
+});
+
+Document.propTypes = {
+  markdown: PropTypes.string.isRequired,
+  updateMarkdown: PropTypes.func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Document);
