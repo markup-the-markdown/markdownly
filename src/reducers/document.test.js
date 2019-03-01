@@ -55,6 +55,18 @@ describe('document reducer', () => {
       ]
     });
   });
+
+  it('updates title', () => {
+    const updateTitle = reducer(state, {
+      type: 'UPDATE_TITLE',
+      payload: 'Phile 1'
+    });
+
+    expect(updateTitle).toEqual({
+      ...state,
+      title: 'Phile 1'
+    });
+  });
 });
 
 

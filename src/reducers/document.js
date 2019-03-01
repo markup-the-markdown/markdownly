@@ -1,6 +1,7 @@
 import {
   UPDATE_MARKDOWN,
-  UPDATE_FILES
+  UPDATE_FILES,
+  UPDATE_TITLE
 } from '../actions/document';
 
 const initialState = {
