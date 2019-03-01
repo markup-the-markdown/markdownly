@@ -6,7 +6,10 @@ function File({ title, ind, handleDelete, handleEdit }) {
     <>
       <p>
         {title}
-        <button id={ind} onClick={handleEdit}>Edit</button>
+        <label>
+          Edit title:
+          <input type='text' id={ind} value={title} onChange={handleEdit}/>
+        </label>
         <button id={ind} onClick={handleDelete}>Delete</button>
       </p>
     </>
