@@ -81,6 +81,28 @@ describe('document reducer', () => {
       ]
     });
   });
+
+  it('updates file title', () => {
+    const updatedFile = reducer(state, {
+      type: 'UPDATE_FILE_TITLE',
+      payload: { ind: 0, title: 'z' }
+    });
+
+    expect(updatedFile).toEqual({
+      ...state,
+      files: [
+        {
+          title: 'z'
+        },
+        {
+          title: 'b'
+        },
+        {
+          title: 'c'
+        }
+      ]
+    });
+  });
 });
 
 

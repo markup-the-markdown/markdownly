@@ -1,8 +1,10 @@
+/* eslint-disable no-case-declarations */
 import {
   UPDATE_MARKDOWN,
   UPDATE_FILES,
   UPDATE_TITLE,
-  DELETE_FILE
+  DELETE_FILE,
+  UPDATE_FILE_TITLE
 } from '../actions/document';
 
 const initialState = {
@@ -23,6 +25,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
+  const copy = state.files.slice();
   switch(action.type) {
     case UPDATE_MARKDOWN:
       return {
@@ -43,12 +46,18 @@ export default function reducer(state = initialState, action) {
         title: action.payload
       };
     case DELETE_FILE:
-      // eslint-disable-next-line no-case-declarations
-      const copy = state.files.slice();
       copy.splice(action.payload, 1);
       return {
         ...state,
         files: copy
+      };
+    case UPDATE_FILE_TITLE:
+      const file = state.files[action.payload.ind];
+      file.title = action.payload.title;
+      copy.splice(action.payload.ind, 1, file);
+      return {
+        ...state,
+        files: copy      
       };
     default:
       return state;  
