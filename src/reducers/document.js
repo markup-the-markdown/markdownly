@@ -25,7 +25,7 @@ const initialState = {
 };
 
 export default function reducer(state = initialState, action) {
-  const copy = state.files.slice();
+  let copy = [];
   switch(action.type) {
     case UPDATE_MARKDOWN:
       return {
@@ -46,14 +46,18 @@ export default function reducer(state = initialState, action) {
         title: action.payload
       };
     case DELETE_FILE:
+      copy = state.files.slice();
       copy.splice(action.payload, 1);
       return {
         ...state,
         files: copy
       };
     case UPDATE_FILE_TITLE:
-      const file = state.files[action.payload.ind];
-      file.title = action.payload.title;
+      copy = state.files.slice();
+      const file = {
+        ...state.files[action.payload.ind],
+        title: action.payload.title
+      };
       copy.splice(action.payload.ind, 1, file);
       return {
         ...state,
@@ -63,4 +67,3 @@ export default function reducer(state = initialState, action) {
       return state;  
   }
 }
-
