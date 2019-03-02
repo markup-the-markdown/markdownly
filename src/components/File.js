@@ -5,12 +5,12 @@ function File({ title, ind, handleDelete, handleEdit }) {
   return (
     <>
       <p>
-        {title}
+        {title}<br />
         <label>
           Edit title:
           <input type='text' id={ind} value={title} onChange={handleEdit}/>
-        </label>
-        <button id={ind} onClick={handleDelete}>Delete</button>
+        </label><br />
+        <button id={ind} onClick={handleDelete}>Delete File</button>
       </p>
     </>
   );
